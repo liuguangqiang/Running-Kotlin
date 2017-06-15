@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+def ext = rootProject.ext
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.liuguangqiang.irunning"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2048M"
+    }
+
+    compileOptions.incremental = false
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'org.jetbrains.anko:anko-sdk15:0.9.1'
+
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    testCompile 'junit:junit:4.12'
+
+    //dagger2
+    compile dagger2
+    kapt daggerCompiler2
+
+    //http
+    compile retrofit
+    compile retrofitAdapter
+    compile okhttpLog
+
+    //rxjava
+    compile rxandroid
+    compile rxjava
+
+    //json
+    compile logansquare
+    compile logansquareConverter
+    kapt logansquareCompiler
+
+    //util
+    compile guangqiangUtils
+
+}
