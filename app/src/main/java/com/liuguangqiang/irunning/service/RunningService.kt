@@ -7,8 +7,8 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.IBinder
-import android.util.Log
 import com.liuguangqiang.irunning.data.entity.Step
+import com.liuguangqiang.support.utils.Logger
 
 /**
  * Created by Eric on 2017/5/19.
@@ -31,7 +31,7 @@ class RunningService : Service(), SensorEventListener {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("running", "RunningService onCreate")
+        Logger.d("RunningService onCreate")
         startSensor()
     }
 
