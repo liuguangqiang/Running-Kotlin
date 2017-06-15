@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">IRunning</string>
+  <string name="app_name">IRunning</string>
+
+  <string name="menu_step">记步</string>
+  <string name="menu_sport">运动</string>
+  <string name="menu_me">我的</string>
 </resources>
