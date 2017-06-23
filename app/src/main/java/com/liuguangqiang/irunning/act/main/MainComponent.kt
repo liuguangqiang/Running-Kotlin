@@ -1,7 +1,5 @@
-package com.liuguangqiang.irunning.di.component
+package com.liuguangqiang.irunning.act.main
 
-import com.liuguangqiang.irunning.di.module.MainModule
-import com.liuguangqiang.irunning.act.main.MainActivity
 import dagger.Component
 
 /**

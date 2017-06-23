@@ -1,7 +1,5 @@
-package com.liuguangqiang.irunning.di.module
+package com.liuguangqiang.irunning.act.main
 
-import com.liuguangqiang.irunning.act.main.MainContract
-import com.liuguangqiang.irunning.act.main.MainPresenter
 import dagger.Module
 import dagger.Provides
 
