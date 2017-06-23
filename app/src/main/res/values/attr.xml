@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <declare-styleable name="WaveView">
+    <attr format="color" name="above_wave_color" />
+    <attr format="color" name="blow_wave_color" />
+    <attr format="integer" name="progress" />
+    <attr format="enum" name="wave_length">
+      <enum name="large" value="1" />
+      <enum name="middle" value="2" />
+      <enum name="little" value="3" />
+    </attr>
+    <attr format="enum" name="wave_height">
+      <enum name="large" value="1" />
+      <enum name="middle" value="2" />
+      <enum name="little" value="3" />
+    </attr>
+    <attr format="enum" name="wave_hz">
+      <enum name="fast" value="1" />
+      <enum name="normal" value="2" />
+      <enum name="slow" value="3" />
+    </attr>
+  </declare-styleable>
+
+  <declare-styleable name="Themes">
+    <attr format="reference" name="waveViewStyle" />
+  </declare-styleable>
+</resources>

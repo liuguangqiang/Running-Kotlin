@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@android:color/white"
   android:orientation="vertical">
 
+  <com.liuguangqiang.irunning.ui.widget.wave.WaveView
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorPrimary"
+    app:above_wave_color="@android:color/white"
+    app:blow_wave_color="@android:color/white"
+    app:progress="10"
+    app:wave_height="large"
+    app:wave_hz="slow"
+    app:wave_length="middle" />
+
   <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
     android:orientation="vertical">
+
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="今日步数" />
+      android:text="Eric"
+      android:textColor="@android:color/white"
+      android:textSize="30dp" />
+
   </LinearLayout>
 
 </RelativeLayout>

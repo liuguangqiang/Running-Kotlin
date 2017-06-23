@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
+
+  <com.liuguangqiang.irunning.ui.widget.wave.WaveView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    app:above_wave_color="@android:color/white"
+    app:blow_wave_color="@android:color/white"
+    app:progress="25"
+    app:wave_height="large"
+    app:wave_hz="slow"
+    app:wave_length="middle" />
+
+  <com.liuguangqiang.irunning.ui.widget.CircleProgressBar
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:layout_centerInParent="true"
+    android:rotation="270" />
+
+  <ImageView
+    android:layout_width="186dp"
+    android:layout_height="186dp"
+    android:layout_centerInParent="true"
+    android:alpha="0.2"
+    android:background="@drawable/round_white_empty" />
 
   <LinearLayout
     android:layout_width="wrap_content"
@@ -14,16 +39,24 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="今日步数"
-      android:textColor="@color/colorPrimary"
-      android:textSize="30sp" />
+      android:textColor="@android:color/white"
+      android:textSize="14sp" />
 
     <TextView
       android:id="@+id/tvSteps"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="0"
-      android:textColor="@color/colorPrimary"
-      android:textSize="30sp" />
+      android:text="9999"
+      android:textColor="@android:color/white"
+      android:textSize="50sp" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:alpha="0.8"
+      android:text="目标 10000"
+      android:textColor="@android:color/white"
+      android:textSize="12sp" />
   </LinearLayout>
 
 </RelativeLayout>

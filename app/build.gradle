@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 def ext = rootProject.ext
 
@@ -79,4 +80,6 @@ dependencies {
     compile eventbus
     compile guangqiangUtils
 
+//    kapt "io.realm:realm-annotations:3.3.1"
+//    kapt "io.realm:realm-annotations-processor:3.3.1"
 }
