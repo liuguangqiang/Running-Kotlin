@@ -8,7 +8,11 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.IBinder
 import com.liuguangqiang.irunning.data.entity.Step
+import com.liuguangqiang.irunning.utils.event.StepEvent
 import com.liuguangqiang.support.utils.Logger
+import com.liuguangqiang.support.utils.TimeUtils
+import io.realm.Realm
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by Eric on 2017/5/19.
@@ -25,6 +29,8 @@ class RunningService : Service(), SensorEventListener {
 
     private var currentStepCount = 0
 
+    private var realm: Realm? = null
+
     override fun onBind(intent: Intent?): IBinder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -32,6 +38,8 @@ class RunningService : Service(), SensorEventListener {
     override fun onCreate() {
         super.onCreate()
         Logger.d("RunningService onCreate")
+        realm = Realm.getDefaultInstance()
+        today = getDateTime()
         startSensor()
     }
 
@@ -42,11 +50,36 @@ class RunningService : Service(), SensorEventListener {
         return START_STICKY
     }
 
+    private fun getDateTime(): String {
+        return TimeUtils.getDateTimeByFormat("yyyy-MM-dd")
+    }
+
     /**
      * save steps into Realm.
      */
     fun saveSteps() {
+        Logger.d("saveSteps:" + currentStepCount)
+        realm?.beginTransaction()
+        currentStep?.count = currentStepCount
+        realm?.commitTransaction()
+    }
 
+    private fun resetSteps(date: String) {
+        lastCounterValue = 0
+        currentStepCount = 0
+
+        today = date
+        lastDate = today
+        currentStep = realm?.where(Step::class.java)?.equalTo("date", date)?.findFirst()
+        if (currentStep == null) {
+            realm?.beginTransaction()
+            currentStep = realm?.createObject(Step::class.java)
+            currentStep?.date = date
+            realm?.commitTransaction()
+        } else {
+            currentStepCount = currentStep!!.count!!
+        }
+        EventBus.getDefault().post(StepEvent(currentStepCount, date))
     }
 
     fun startSensor() {
@@ -56,7 +89,28 @@ class RunningService : Service(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
+        val currentDate = getDateTime()
+        if (currentDate != lastDate) {
+            //如果已经进入第二天
+            resetSteps(currentDate)
+        }
 
+        val counterValue = event!!.values[0].toInt()
+        if (lastCounterValue == 0) {
+            lastCounterValue = counterValue
+        }
+
+        currentStepCount += counterValue - lastCounterValue
+        lastCounterValue = counterValue
+        saveSteps()
+        EventBus.getDefault().post(StepEvent(currentStepCount, today!!))
+
+        //同步
+//        changeTimes--
+//        if (changeTimes == 0) {
+//            changeTimes = 10
+//            runningPresenter.autoSyncSteps(today, currentStepCount)
+//        }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
