@@ -10,7 +10,7 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name="com.liuguangqiang.irunning.act.main.MainActivity">
+    <activity android:name=".act.login.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,8 @@
     </activity>
 
     <service android:name=".service.RunningService" />
+
+    <activity android:name=".act.main.MainActivity"></activity>
   </application>
 
 </manifest>

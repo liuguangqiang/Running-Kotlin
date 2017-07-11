@@ -49,11 +49,6 @@ dependencies {
     })
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'org.jetbrains.anko:anko-sdk15:0.9.1'
-
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
-    testCompile 'junit:junit:4.12'
 
     //support
     compile supportDesign
@@ -79,7 +74,12 @@ dependencies {
     //util
     compile eventbus
     compile guangqiangUtils
+    compile butterknife
 
 //    kapt "io.realm:realm-annotations:3.3.1"
 //    kapt "io.realm:realm-annotations-processor:3.3.1"
+    compile 'org.jetbrains.anko:anko-sdk15:0.9.1'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    testCompile 'junit:junit:4.12'
 }

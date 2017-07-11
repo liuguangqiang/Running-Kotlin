@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.liuguangqiang.irunning.R
 import com.liuguangqiang.irunning.adapter.MainPagerAdapter
 import com.liuguangqiang.irunning.app.BaseActivity
-import com.liuguangqiang.irunning.di.component.DaggerMainComponent
 import com.liuguangqiang.irunning.service.RunningService
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
