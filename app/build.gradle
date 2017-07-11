@@ -20,6 +20,10 @@ android {
         multiDexEnabled true
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 //    productFlavors {
 //        dev {
 //            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
