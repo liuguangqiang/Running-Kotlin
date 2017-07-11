@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.liuguangqiang.irunning">
+    package="com.liuguangqiang.irunning">
 
-  <application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:name=".app.RunningApplication"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <activity android:name=".act.login.LoginActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
+    <application
+        android:name=".app.RunningApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".act.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <service android:name=".service.RunningService" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <activity android:name=".act.main.MainActivity"></activity>
-  </application>
+        <service android:name=".service.RunningService" />
+
+        <activity android:name=".act.main.MainActivity"></activity>
+    </application>
 
 </manifest>

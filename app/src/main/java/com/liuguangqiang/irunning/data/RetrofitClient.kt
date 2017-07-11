@@ -2,13 +2,12 @@ package com.liuguangqiang.kotlindemo.domian
 
 import com.github.aurae.retrofit2.LoganSquareConverterFactory
 import com.liuguangqiang.irunning.BuildConfig
-import java.io.IOException
-
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import java.io.IOException
 
 /**
  * Created by Eric on 17/5/19.
@@ -36,7 +35,7 @@ class RetrofitClient {
 
         retrofit = retrofit2.Retrofit
                 .Builder()
-                .baseUrl(HOST_NAME)
+                .baseUrl(BuildConfig.API)
                 .client(okHttpClient)
                 .addConverterFactory(LoganSquareConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
