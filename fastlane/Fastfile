@@ -1,3 +1,5 @@
+import "BaseFastfile"
+
 # Customise this file, documentation can be found here:
 # https://github.com/fastlane/fastlane/tree/master/fastlane/docs
 # All available actions: https://docs.fastlane.tools/actions
@@ -16,19 +18,24 @@ fastlane_version "2.28.3"
 default_platform :android
 
 platform :android do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-  end
 
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
+  desc "Submit a new Dev Build to Crashlytics Beta"
+  lane :dev do
+    increment_build
+
     gradle(task: "assembleRelease")
-    crashlytics
+
+    crashlytics(
+       api_token: "adde5d40dc12d0a3728e9ff49aecea6f83cca418",
+       build_secret: "c2136d1d874f68d44b058cbe58b41e89848a2d27ad4defb9dc601afafdbd61ff"
+    )
+
+    notify_slack
 
     # sh "your_script.sh"
     # You can also use other beta testing services here

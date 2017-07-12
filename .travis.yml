@@ -14,3 +14,9 @@ notifications:
   
 script: ./gradlew build
 #script: ./gradlew publishApkRelease
+
+branches:
+  only:
+    - dev
+    - staging
+    - production

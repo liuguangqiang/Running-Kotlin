@@ -1,10 +1,29 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
 
 def ext = rootProject.ext
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
 
 android {
     compileSdkVersion 25
@@ -14,7 +33,7 @@ android {
         applicationId "com.liuguangqiang.irunning"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
+        versionCode 2
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -24,21 +43,30 @@ android {
         abortOnError false
     }
 
-//    productFlavors {
-//        dev {
-//            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
-//        }
-//    }
+    signingConfigs {
+        release {
+            try {
+                storeFile file("../buildConfig/running.keystore.jks")
+                storePassword KEYSTORE_PWD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PWD
+            } catch (ex) {
+                throw new InvalidUserDataException("Have to define KEYSTORE_PWD and KEY_PWD.")
+            }
+        }
+    }
 
     buildTypes {
         debug {
             buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
+            signingConfig signingConfigs.release
         }
 
         release {
             minifyEnabled false
             buildConfigField 'String', 'API', '"http://api.step.maiziui.com/live/"'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -94,4 +122,6 @@ dependencies {
     compile 'org.jetbrains.anko:anko-sdk15:0.9.1'
     compile 'com.android.support:appcompat-v7:25.3.0'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.crashlytics.sdk.android:crashlytics:2.6.8'
 }

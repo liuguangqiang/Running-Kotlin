@@ -1,0 +1,29 @@
+update_fastlane
+
+fastlane_version "2.28.3"
+
+platform :android do
+    before_all do
+        ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    end
+
+    def notify_slack()
+           slack(
+             message: "*IRunning* successfully deployed!",
+             success: true,
+             payload: {
+               "Build Date" => Time.new.to_s,
+               "Environment" => lane_context[SharedValues::LANE_NAME],
+               "Build" => lane_context["VERSION_CODE"] || "Not available"
+             },
+             default_payloads: [:git_branch]
+           )
+    end
+
+    # Increment the version code
+    def increment_build
+           lane_context["VERSION_CODE"] = increment_version_code
+           sh("git commit -am '[ci skip] Build bumped to #{lane_context["VERSION_CODE"]}'")
+    end
+
+end
