@@ -12,6 +12,7 @@ android:
 before_install:
     - rvm install 2.3.1
     - gem install fastlane
+    - chmod +x travis.sh
     
 notifications:
   email: false
