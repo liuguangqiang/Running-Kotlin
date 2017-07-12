@@ -16,7 +16,8 @@ before_install:
 notifications:
   email: false
   
-script: ./travis.sh
+script:
+  - ./travis.sh
 
 branches:
   only:
