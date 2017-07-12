@@ -63,7 +63,11 @@ android {
         }
 
         staging {
-            applicationIdSuffix '.stage'
+            applicationIdSuffix '.staging'
+            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
+        }
+
+        production {
             buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
         }
     }
