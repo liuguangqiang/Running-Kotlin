@@ -7,6 +7,13 @@ platform :android do
         ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     end
 
+    def upload_crashlytics()
+           crashlytics(
+               api_token: "adde5d40dc12d0a3728e9ff49aecea6f83cca418",
+               build_secret: "c2136d1d874f68d44b058cbe58b41e89848a2d27ad4defb9dc601afafdbd61ff"
+            )
+    end
+
     def notify_slack()
            slack(
              message: "*IRunning* successfully deployed!",
@@ -14,7 +21,7 @@ platform :android do
              payload: {
                "Build Date" => Time.new.to_s,
                "Environment" => lane_context[SharedValues::LANE_NAME],
-               "Build" => lane_context["VERSION_CODE"] || "Not available"
+               "Build Version" => lane_context["VERSION_CODE"] || "Not available"
              },
              default_payloads: [:git_branch]
            )

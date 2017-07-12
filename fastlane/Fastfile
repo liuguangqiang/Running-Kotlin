@@ -28,18 +28,35 @@ platform :android do
   lane :dev do
     increment_build
 
-    gradle(task: "assembleRelease")
-
-    crashlytics(
-       api_token: "adde5d40dc12d0a3728e9ff49aecea6f83cca418",
-       build_secret: "c2136d1d874f68d44b058cbe58b41e89848a2d27ad4defb9dc601afafdbd61ff"
+    gradle(
+        task: "assembleRelease",
+        flavor: "dev"
     )
+
+    upload_crashlytics()
 
     notify_slack
 
     # sh "your_script.sh"
     # You can also use other beta testing services here
   end
+
+    desc "Submit a new Stage Build to Crashlytics Beta"
+    lane :staging do
+      increment_build
+
+      gradle(
+          task: "assembleRelease",
+          flavor: "staging"
+      )
+
+      upload_crashlytics()
+
+      notify_slack
+
+      # sh "your_script.sh"
+      # You can also use other beta testing services here
+    end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
