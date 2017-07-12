@@ -10,6 +10,7 @@ android:
     - extra-android-m2repository
 
 before_install:
+    - rvm install 2.3.1
     - gem install fastlane
     
 notifications:
