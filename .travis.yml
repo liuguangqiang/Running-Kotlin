@@ -8,9 +8,24 @@ android:
     - build-tools-25.0.2
     - android-25
     - extra-android-m2repository
+
+before_script:
+    - git config --global user.email "guangqiang.dev@gmail.com"
+    - git config --global user.name "Eric"
+
+before_install:
+    - rvm install 2.3.1
+    - gem install fastlane
+    - chmod +x travis.sh
     
 notifications:
   email: false
   
-script: ./gradlew build
-#script: ./gradlew publishApkRelease
+script:
+  - ./travis.sh
+
+branches:
+  only:
+    - dev
+    - staging
+    - production
