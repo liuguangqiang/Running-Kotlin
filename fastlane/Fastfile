@@ -29,8 +29,9 @@ platform :android do
     increment_build
 
     gradle(
-        task: "assembleRelease",
-        flavor: "dev"
+        task: "assemble",
+        flavor: "dev",
+        build_type: "Release"
     )
 
     upload_crashlytics()
@@ -46,8 +47,9 @@ platform :android do
       increment_build
 
       gradle(
-          task: "assembleRelease",
-          flavor: "staging"
+          task: "assemble",
+          flavor: "staging",
+          build_type: "Release"
       )
 
       upload_crashlytics()
