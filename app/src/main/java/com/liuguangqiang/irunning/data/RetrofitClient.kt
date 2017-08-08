@@ -2,6 +2,7 @@ package com.liuguangqiang.kotlindemo.domian
 
 import com.github.aurae.retrofit2.LoganSquareConverterFactory
 import com.liuguangqiang.irunning.BuildConfig
+import com.liuguangqiang.irunning.utils.LoginManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -48,6 +49,7 @@ class RetrofitClient {
         override fun intercept(chain: Interceptor.Chain): Response {
             val builder = chain.request().newBuilder()
             builder.addHeader(HEADER_USER_AGENT, "Test")
+            builder.addHeader("token", LoginManager.instance.getToken())
             val response = chain.proceed(builder.build())
             return response
         }
@@ -55,13 +57,7 @@ class RetrofitClient {
 
     companion object {
 
-        private val DEV_HOST_NAME = "http://api.step.maiziui.com/"
-
-        private val LIVE_HOST_NAME = "http://api.step.maiziui.com/"
-
         private val HEADER_USER_AGENT = "User-Agent"
-
-        val HOST_NAME = if (BuildConfig.DEBUG) DEV_HOST_NAME else LIVE_HOST_NAME
 
         val instance = RetrofitClient()
     }

@@ -6,12 +6,9 @@ import android.support.design.widget.BottomNavigationView
 import com.liuguangqiang.support.utils.Logger
 
 /**
- * BottomNavigationView扩展类.
+ * Disable the shift mode of a BottomNavigationView.
+ *
  * Created by Eric on 2017/6/15.
- */
-
-/**
- * 禁用BottomNavigationView的ShiftMode.
  */
 fun BottomNavigationView.disableShiftMode() {
     val menuView = getChildAt(0) as BottomNavigationMenuView

@@ -58,29 +58,22 @@ android {
 
     productFlavors {
         dev {
-            applicationIdSuffix '.dev'
-            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
-        }
-
-        staging {
-            applicationIdSuffix '.staging'
-            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
+//            applicationIdSuffix '.dev'
+            buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
         }
 
         production {
-            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
+            buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
         }
     }
 
     buildTypes {
         debug {
-            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/"'
             signingConfig signingConfigs.release
         }
 
         release {
             minifyEnabled false
-            buildConfigField 'String', 'API', '"http://api.step.maiziui.com/live/"'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

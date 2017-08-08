@@ -1,5 +1,6 @@
 package com.liuguangqiang.irunning.act.login
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
@@ -10,6 +11,8 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
+
+    lateinit var dialog: ProgressDialog
 
     @Inject lateinit var presenter: LoginContract.Presenter
 
@@ -29,6 +32,16 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onLoginSuccess() {
         toast("login success")
+    }
+
+    override fun showLoading() {
+        dialog = ProgressDialog(this)
+        dialog.setMessage("Loading...")
+        dialog.show()
+    }
+
+    override fun hideLoading() {
+        dialog.hide()
     }
 
 }

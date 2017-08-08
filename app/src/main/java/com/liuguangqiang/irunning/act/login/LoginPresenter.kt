@@ -1,7 +1,9 @@
 package com.liuguangqiang.irunning.act.login
 
-import com.liuguangqiang.irunning.data.entity.Token
+import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.data.service.TokenService
+import com.liuguangqiang.irunning.data.service.UserService
+import com.liuguangqiang.irunning.utils.LoginManager
 import com.liuguangqiang.support.utils.Logger
 import rx.Observer
 import javax.inject.Inject
@@ -13,29 +15,53 @@ class LoginPresenter : LoginContract.Presenter {
 
     @Inject lateinit var tokenService: TokenService
 
+    @Inject lateinit var userService: UserService
+
     var view: LoginContract.View
 
     @Inject
-    constructor(view: LoginContract.View, tokenService: TokenService) {
+    constructor(view: LoginContract.View, tokenService: TokenService, userService: UserService) {
         this.view = view
         this.tokenService = tokenService
+        this.userService = userService
     }
 
     override fun login(username: String, password: String) {
         Logger.d("login:" + username)
-        tokenService.post(username, password).subscribe(object : Observer<Token> {
-            override fun onCompleted() {
-            }
+        view.showLoading()
+//        tokenService.post(username, password).subscribe(object : Observer<Token> {
+//            override fun onCompleted() {
+//                view.hideLoading()
+//            }
+//
+//            override fun onError(e: Throwable?) {
+//                Logger.d("login onError:" + e.toString())
+//            }
+//
+//            override fun onNext(t: Token?) {
+//                Logger.d("onNext:" + t!!.user_id)
+//                view.onLoginSuccess()
+//            }
+//        })
 
-            override fun onError(e: Throwable?) {
-                Logger.d("login onError:" + e.toString())
-            }
+        tokenService.post(username, password)
+                .flatMap { token ->
+                    LoginManager.instance.saveToken(token.token)
+                    userService.get(token.user_id)
+                }
+                .subscribe(object : Observer<User> {
+                    override fun onNext(user: User?) {
+                        Logger.d("username:" + user!!.username)
+                        view.onLoginSuccess()
+                    }
 
-            override fun onNext(t: Token?) {
-                Logger.d("onNext:" + t!!.user_id)
-                view.onLoginSuccess()
-            }
-        })
+                    override fun onError(p0: Throwable?) {
+                    }
+
+                    override fun onCompleted() {
+                        view.hideLoading()
+                    }
+                })
     }
 
 }

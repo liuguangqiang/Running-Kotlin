@@ -6,6 +6,10 @@ package com.liuguangqiang.irunning.act.login
 interface LoginContract {
 
     interface View {
+        fun showLoading()
+
+        fun hideLoading()
+
         fun onLoginSuccess()
     }
 
