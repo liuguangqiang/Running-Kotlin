@@ -21,3 +21,10 @@ then
 	fastlane deploy
 
 fi
+
+elif [[ $TRAVIS_BRANCH == master ]]
+then
+
+	fastlane deploy
+
+fi
