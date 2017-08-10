@@ -62,8 +62,17 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "assembleRelease")
-    supply
+    increment_build
+
+       gradle(
+           task: "assemble",
+           flavor: "production",
+           build_type: "Release"
+       )
+
+       upload_crashlytics()
+
+       notify_slack
   end
 
   # You can define as many lanes as you want
