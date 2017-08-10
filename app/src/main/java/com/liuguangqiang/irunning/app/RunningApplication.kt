@@ -17,8 +17,9 @@ class RunningApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Logger.setTag("running")
         context = this
+        Logger.setTag("running")
+        LoginManager.instance.init()
 
         //Fabric
         val fabric: Fabric = Fabric.Builder(this)

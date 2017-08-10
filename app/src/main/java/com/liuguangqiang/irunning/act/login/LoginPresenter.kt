@@ -27,23 +27,7 @@ class LoginPresenter : LoginContract.Presenter {
     }
 
     override fun login(username: String, password: String) {
-        Logger.d("login:" + username)
         view.showLoading()
-//        tokenService.post(username, password).subscribe(object : Observer<Token> {
-//            override fun onCompleted() {
-//                view.hideLoading()
-//            }
-//
-//            override fun onError(e: Throwable?) {
-//                Logger.d("login onError:" + e.toString())
-//            }
-//
-//            override fun onNext(t: Token?) {
-//                Logger.d("onNext:" + t!!.user_id)
-//                view.onLoginSuccess()
-//            }
-//        })
-
         tokenService.post(username, password)
                 .flatMap { token ->
                     LoginManager.instance.saveToken(token.token)
@@ -51,8 +35,8 @@ class LoginPresenter : LoginContract.Presenter {
                 }
                 .subscribe(object : Observer<User> {
                     override fun onNext(user: User?) {
-                        Logger.d("username:" + user!!.username)
                         view.onLoginSuccess()
+                        LoginManager.instance.saveUser(user!!)
                     }
 
                     override fun onError(p0: Throwable?) {

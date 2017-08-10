@@ -25,9 +25,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.RunningService" />
-
         <activity android:name=".act.main.MainActivity"></activity>
+
+        <!--Service-->
+        <service android:name=".service.RunningService" />
     </application>
 
 </manifest>

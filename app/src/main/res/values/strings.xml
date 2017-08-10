@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">IRunning</string>
 
-    <string name="menu_step">计步</string>
-    <string name="menu_sport">运动</string>
-    <string name="menu_me">我的</string>
+    <string name="menu_step">STEP</string>
+    <string name="menu_sport">SPORT</string>
+    <string name="menu_me">ME</string>
 
     <!--title-->
-    <string name="title_login">用户登录</string>
+    <string name="title_login">Sign In</string>
 
-    <string name="login_lb_username">用户名</string>
-    <string name="login_lb_password">密码</string>
-    <string name="login_submit">登录</string>
+    <!--login-->
+    <string name="login_lb_username">USERNAME</string>
+    <string name="login_lb_password">PASSWORD</string>
+    <string name="login_submit">SIGN IN</string>
 
 </resources>

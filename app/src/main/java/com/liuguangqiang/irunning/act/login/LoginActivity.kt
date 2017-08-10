@@ -1,13 +1,15 @@
 package com.liuguangqiang.irunning.act.login
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.liuguangqiang.irunning.R
+import com.liuguangqiang.irunning.act.main.MainActivity
+import com.liuguangqiang.irunning.utils.LoginManager
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
@@ -21,6 +23,10 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         setContentView(R.layout.activity_login)
         ButterKnife.bind(this)
         DaggerLoginComponent.builder().loginModule(LoginModule(this)).build().inject(this)
+
+        if (LoginManager.instance.isLogin()) {
+            onLoginSuccess()
+        }
     }
 
     @OnClick(R.id.btn_login)
@@ -31,7 +37,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun onLoginSuccess() {
-        toast("login success")
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun showLoading() {
