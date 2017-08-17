@@ -1,16 +1,21 @@
 <resources>
-    <string name="app_name">IRunning</string>
+  <string name="app_name">IRunning</string>
 
-    <string name="menu_step">STEP</string>
-    <string name="menu_sport">SPORT</string>
-    <string name="menu_me">ME</string>
+  <string name="menu_step">STEP</string>
+  <string name="menu_sport">SPORT</string>
+  <string name="menu_me">ME</string>
 
-    <!--title-->
-    <string name="title_login">Sign In</string>
+  <!--Title-->
+  <string name="title_login">Sign In</string>
 
-    <!--login-->
-    <string name="login_lb_username">USERNAME</string>
-    <string name="login_lb_password">PASSWORD</string>
-    <string name="login_submit">SIGN IN</string>
+  <!--Login-->
+  <string name="login_lb_username">USERNAME</string>
+  <string name="login_lb_password">PASSWORD</string>
+  <string name="login_submit">SIGN IN</string>
+
+  <!--Me-->
+  <string name="me_edit_profile">View and edit profile</string>
+  <string name="me_steps">Steps</string>
+  <string name="me_settings">Settings</string>
 
 </resources>

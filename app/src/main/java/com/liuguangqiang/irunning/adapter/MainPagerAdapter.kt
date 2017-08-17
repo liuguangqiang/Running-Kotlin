@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.liuguangqiang.irunning.act.me.MeFragment
+import com.liuguangqiang.irunning.act.me.SportFragment
 import com.liuguangqiang.irunning.act.step.StepFragment
 
 /**
@@ -14,7 +15,7 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(arg0: Int): Fragment? {
         when (arg0) {
             0 -> return StepFragment()
-            1 -> return MeFragment()
+            1 -> return SportFragment()
             2 -> return MeFragment()
             else -> return null
         }

@@ -16,7 +16,7 @@
  *
  */
 
-package com.liuguangqiang.irunning.ui.widget;
+package com.liuguangqiang.irunning.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

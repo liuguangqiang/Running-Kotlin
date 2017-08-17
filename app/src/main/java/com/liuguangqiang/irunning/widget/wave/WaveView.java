@@ -1,4 +1,4 @@
-package com.liuguangqiang.irunning.ui.widget.wave;
+package com.liuguangqiang.irunning.widget.wave;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:padding="@dimen/default_padding_big"
   android:background="@android:color/white"
   android:orientation="vertical">
 
-  <com.liuguangqiang.irunning.ui.widget.wave.WaveView
-    android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="@color/colorPrimary"
-    app:above_wave_color="@android:color/white"
-    app:blow_wave_color="@android:color/white"
-    app:progress="10"
-    app:wave_height="large"
-    app:wave_hz="slow"
-    app:wave_length="middle" />
-
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_padding"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    <TextView
-      android:layout_width="wrap_content"
+    <LinearLayout
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:text="Eric"
-      android:textColor="@android:color/white"
-      android:textSize="30dp" />
+      android:layout_weight="1"
+      android:layout_gravity="center_vertical"
+      android:orientation="vertical">
 
+      <TextView
+        android:id="@+id/tvUsername"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/app_name"
+        android:textColor="@color/gray_dark"
+        android:textSize="32dp" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/me_edit_profile"
+        android:textColor="@color/gray_light"
+        android:textSize="@dimen/font_size_small" />
+
+    </LinearLayout>
+
+    <ImageView
+      android:layout_width="66dp"
+      android:layout_height="66dp"
+      android:background="@drawable/ic_default_avatar" />
   </LinearLayout>
 
-</RelativeLayout>
+  <TextView
+    style="@style/ItemSettings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="42dp"
+    android:drawableRight="@mipmap/ic_steps"
+    android:text="@string/me_steps" />
+
+  <TextView
+    android:id="@+id/textView"
+    style="@style/ItemSettings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableRight="@mipmap/ic_settings"
+    android:text="@string/me_settings" />
+
+</LinearLayout>
