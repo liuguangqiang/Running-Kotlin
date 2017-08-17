@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import com.liuguangqiang.irunning.extension.disableShiftMode
 import com.liuguangqiang.irunning.extension.setScrollable
-import kotlinx.android.synthetic.main.fragment_step.*
 
 class MainActivity : BaseActivity(), MainContract.View {
 
@@ -48,10 +47,6 @@ class MainActivity : BaseActivity(), MainContract.View {
         mainViewPager.adapter = adapter
         mainViewPager.offscreenPageLimit = 3
         mainViewPager.setScrollable(false)
-
-        ivRefresh.setOnClickListener {
-
-        }
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList
 abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(context: Context, data: List<T>) : RecyclerView.Adapter<VH>() {
 
     var data: List<T> = ArrayList()
-    val layoutInflater: LayoutInflater
+    var layoutInflater: LayoutInflater
 
     var onItemClickListener: OnItemClickListener? = null
     var onItemLongClickListener: OnItemLongClickListener? = null

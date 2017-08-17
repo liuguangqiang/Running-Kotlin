@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.crashlytics.android.Crashlytics
+import com.liuguangqiang.irunning.BuildConfig
 import com.liuguangqiang.irunning.utils.LoginManager
 import com.liuguangqiang.support.utils.Logger
 import io.fabric.sdk.android.Fabric
@@ -22,11 +23,13 @@ class RunningApplication : Application() {
         LoginManager.instance.init()
 
         //Fabric
-        val fabric: Fabric = Fabric.Builder(this)
-                .kits(Crashlytics())
-                .debuggable(true)
-                .build()
-        Fabric.with(fabric)
+        if (!BuildConfig.DEBUG) {
+            val fabric: Fabric = Fabric.Builder(this)
+                    .kits(Crashlytics())
+                    .debuggable(true)
+                    .build()
+            Fabric.with(fabric)
+        }
 
         //Realm
         Realm.init(this)

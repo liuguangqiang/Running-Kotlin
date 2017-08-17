@@ -1,7 +1,11 @@
 package com.liuguangqiang.irunning.act.me
 
+import android.content.Intent
 import android.os.Bundle
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.liuguangqiang.irunning.R
+import com.liuguangqiang.irunning.act.steps.StepsActivity
 import com.liuguangqiang.irunning.app.BaseFragment
 import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.utils.LoginManager
@@ -22,8 +26,13 @@ class MeFragment : BaseFragment() {
         }
     }
 
-    fun bindUser(user: User) {
+    private fun bindUser(user: User) {
         tvUsername.text = user.username
+    }
+
+    @OnClick(R.id.tvSteps)
+    fun onClickSteps() {
+        startActivity(Intent(activity, StepsActivity::class.java))
     }
 
 }

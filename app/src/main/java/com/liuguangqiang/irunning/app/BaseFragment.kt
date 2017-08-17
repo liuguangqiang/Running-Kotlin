@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.ButterKnife
 
 /**
  * Created by Eric on 2017/6/15.
@@ -19,11 +20,12 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val layoutId = getContentLayout()
-        if (layoutId > 0) {
+        return if (layoutId > 0) {
             val rootView = inflater!!.inflate(layoutId, container, false)
-            return rootView
+            ButterKnife.bind(this, rootView)
+            rootView
         } else {
-            return super.onCreateView(inflater, container, savedInstanceState)
+            super.onCreateView(inflater, container, savedInstanceState)
         }
     }
 
