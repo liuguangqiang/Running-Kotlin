@@ -34,12 +34,16 @@ class StepsAdapter(context: Context, data: List<Step>) : BaseAdapter<Step, ViewH
         @Bind(R.id.tvTitle)
         lateinit var tvTitle: TextView
 
+        @Bind(R.id.tvDate)
+        lateinit var tvDate: TextView
+
         init {
             ButterKnife.bind(this, itemView)
         }
 
         fun bindData(entity: Step) {
             tvTitle.text = "" + entity.count
+            tvDate.text = entity.date
         }
     }
 
