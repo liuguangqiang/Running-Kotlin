@@ -28,6 +28,7 @@ class StepsActivity : ToolbarActivity(), StepsContract.View {
     }
 
     override fun inject() {
+        DaggerStepsComponent.builder().stepsModule(StepsModule(this)).build().inject(this)
     }
 
     override fun showSteps(steps: List<Step>) {
