@@ -10,8 +10,8 @@ android:
     - extra-android-m2repository
 
 before_script:
-    - git config --global user.email "guangqiang.dev@gmail.com"
-    - git config --global user.name "Eric"
+  - git config --global user.email "travis@Travis-Android.local"
+  - git config --global user.name "Travis"
 
 before_install:
     - rvm install 2.3.1

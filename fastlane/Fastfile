@@ -62,7 +62,7 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    increment_build
+       increment_build
 
        gradle(
            task: "assemble",

@@ -13,14 +13,14 @@ then
 elif [[ $TRAVIS_BRANCH == staging ]]
 then
 
-	fastlane staging
-
-elif [[ $TRAVIS_BRANCH == production ]]
-then
-
-	fastlane deploy
+	fastlane dev
 
 elif [[ $TRAVIS_BRANCH == master ]]
+then
+
+	fastlane dev
+
+elif [[ $TRAVIS_BRANCH == production ]]
 then
 
 	fastlane deploy
