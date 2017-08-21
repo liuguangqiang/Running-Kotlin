@@ -26,6 +26,10 @@ platform :android do
 
   desc "Submit a new Dev Build to Crashlytics Beta"
   lane :dev do
+    upload_localization
+
+    sync_localization
+
     increment_build
 
     gradle(
