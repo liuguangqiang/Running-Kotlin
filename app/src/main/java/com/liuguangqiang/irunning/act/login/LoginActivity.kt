@@ -8,13 +8,14 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.liuguangqiang.irunning.R
 import com.liuguangqiang.irunning.act.main.MainActivity
+import com.liuguangqiang.irunning.extension.toast
 import com.liuguangqiang.irunning.utils.LoginManager
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
 
-    lateinit var dialog: ProgressDialog
+    private var dialog: ProgressDialog? = null
 
     @Inject lateinit var presenter: LoginContract.Presenter
 
@@ -37,18 +38,24 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun onLoginSuccess() {
+        hideLoading()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
+    override fun onLoginFailed(t: Throwable) {
+        hideLoading()
+        toast(R.string.error_login)
+    }
+
     override fun showLoading() {
         dialog = ProgressDialog(this)
-        dialog.setMessage("Loading...")
-        dialog.show()
+        dialog?.setMessage(getString(R.string.loading))
+        dialog?.show()
     }
 
     override fun hideLoading() {
-        dialog.hide()
+        dialog?.hide()
     }
 
 }

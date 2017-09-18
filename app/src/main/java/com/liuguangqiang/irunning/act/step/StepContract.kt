@@ -13,6 +13,8 @@ interface StepContract {
 
     interface Presenter {
         fun getCurrentSteps()
+
+        fun uploadSteps(count: Int)
     }
 
 }

@@ -1,6 +1,7 @@
 package com.liuguangqiang.irunning.service
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -83,9 +84,14 @@ class RunningService : Service(), SensorEventListener {
     }
 
     fun startSensor() {
-        var sensorManager: SensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        var sensor: Sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL, 0)
+        var obj = getSystemService(SENSOR_SERVICE)
+
+        var sensorManager: SensorManager = obj as SensorManager
+        if (sensorManager != null) {
+            var sensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+            if (sensor != null)
+                sensorManager?.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL, 0)
+        }
     }
 
     override fun onSensorChanged(event: SensorEvent?) {

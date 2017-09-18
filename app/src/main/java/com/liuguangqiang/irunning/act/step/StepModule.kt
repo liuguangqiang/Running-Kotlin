@@ -1,5 +1,7 @@
 package com.liuguangqiang.irunning.act.step
 
+import com.liuguangqiang.irunning.data.model.StepModel
+import com.liuguangqiang.irunning.data.service.StepService
 import dagger.Module
 import dagger.Provides
 
@@ -15,12 +17,19 @@ class StepModule {
         this.view = view
     }
 
-    @Provides fun provideView(): StepContract.View {
+    @Provides
+    fun provideView(): StepContract.View {
         return view
     }
 
-    @Provides fun providePresenter(presenter: StepPresenter): StepContract.Presenter {
+    @Provides
+    fun providePresenter(presenter: StepPresenter): StepContract.Presenter {
         return presenter
+    }
+
+    @Provides
+    fun provideService(serivce: StepModel): StepService {
+        return serivce
     }
 
 }

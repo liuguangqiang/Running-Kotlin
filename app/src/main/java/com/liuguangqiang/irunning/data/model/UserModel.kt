@@ -2,6 +2,7 @@ package com.liuguangqiang.irunning.data.model
 
 import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.data.service.UserService
+import com.liuguangqiang.irunning.extension.observeOnMainThread
 import com.liuguangqiang.kotlindemo.domian.RetrofitClient
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -23,9 +24,7 @@ class UserModel : UserService {
     }
 
     override fun get(userId: String): Observable<User> {
-        return service.get(userId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        return service.get(userId).observeOnMainThread()
     }
 
 

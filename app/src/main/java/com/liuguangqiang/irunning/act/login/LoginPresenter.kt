@@ -3,8 +3,10 @@ package com.liuguangqiang.irunning.act.login
 import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.data.service.TokenService
 import com.liuguangqiang.irunning.data.service.UserService
+import com.liuguangqiang.irunning.extension.observeOnMainThread
 import com.liuguangqiang.irunning.utils.LoginManager
 import com.liuguangqiang.support.utils.Logger
+import rx.Observable
 import rx.Observer
 import javax.inject.Inject
 
@@ -30,20 +32,29 @@ class LoginPresenter : LoginContract.Presenter {
         view.showLoading()
         tokenService.post(username, password)
                 .flatMap { token ->
-                    LoginManager.instance.saveToken(token.token)
-                    userService.get(token.user_id)
+                    try {
+                        LoginManager.instance.saveToken(token.token)
+                        userService.get(token.user_id)
+                    } catch (e: Exception) {
+                        Observable.error<User>(Throwable("error"))
+                    }
                 }
                 .subscribe(object : Observer<User> {
                     override fun onNext(user: User?) {
-                        view.onLoginSuccess()
-                        LoginManager.instance.saveUser(user!!)
+                        if (user != null) {
+                            view.onLoginSuccess()
+                            LoginManager.instance.saveUser(user!!)
+                        } else {
+                            Logger.d("onError: user is null")
+                        }
                     }
 
                     override fun onError(p0: Throwable?) {
+                        Logger.d("onError:" + p0.toString())
+                        view.onLoginFailed(p0!!)
                     }
 
                     override fun onCompleted() {
-                        view.hideLoading()
                     }
                 })
     }

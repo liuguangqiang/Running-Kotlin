@@ -11,6 +11,8 @@ interface LoginContract {
         fun hideLoading()
 
         fun onLoginSuccess()
+
+        fun onLoginFailed(t: Throwable)
     }
 
     interface Presenter {

@@ -15,6 +15,13 @@ import java.io.IOException
  */
 class RetrofitClient {
 
+    companion object {
+
+        private val HEADER_USER_AGENT = "User-Agent"
+
+        val instance = RetrofitClient()
+    }
+
     private var retrofit: retrofit2.Retrofit? = null
 
     init {
@@ -53,13 +60,6 @@ class RetrofitClient {
             val response = chain.proceed(builder.build())
             return response
         }
-    }
-
-    companion object {
-
-        private val HEADER_USER_AGENT = "User-Agent"
-
-        val instance = RetrofitClient()
     }
 
 }
