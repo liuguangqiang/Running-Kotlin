@@ -1,5 +1,7 @@
 package com.liuguangqiang.irunning.act.login
 
+import com.liuguangqiang.irunning.data.entity.User
+
 /**
  * Created by Eric on 2017/7/11.
  */
@@ -10,7 +12,7 @@ interface LoginContract {
 
         fun hideLoading()
 
-        fun onLoginSuccess()
+        fun onLoginSuccess(user: User)
 
         fun onLoginFailed(t: Throwable)
     }

@@ -3,8 +3,6 @@ package com.liuguangqiang.irunning.act.login
 import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.data.service.TokenService
 import com.liuguangqiang.irunning.data.service.UserService
-import com.liuguangqiang.irunning.extension.observeOnMainThread
-import com.liuguangqiang.irunning.utils.LoginManager
 import com.liuguangqiang.support.utils.Logger
 import rx.Observable
 import rx.Observer
@@ -28,12 +26,26 @@ class LoginPresenter : LoginContract.Presenter {
         this.userService = userService
     }
 
+    fun getUser(userId: String) {
+        userService.get(userId).subscribe(object : Observer<User> {
+            override fun onCompleted() {
+            }
+
+            override fun onError(p0: Throwable?) {
+            }
+
+            override fun onNext(user: User?) {
+                view.onLoginSuccess(user!!)
+            }
+        })
+    }
+
     override fun login(username: String, password: String) {
         view.showLoading()
         tokenService.post(username, password)
                 .flatMap { token ->
                     try {
-                        LoginManager.instance.saveToken(token.token)
+//                        LoginManager.instance.saveToken(token.token)
                         userService.get(token.user_id)
                     } catch (e: Exception) {
                         Observable.error<User>(Throwable("error"))
@@ -42,8 +54,8 @@ class LoginPresenter : LoginContract.Presenter {
                 .subscribe(object : Observer<User> {
                     override fun onNext(user: User?) {
                         if (user != null) {
-                            view.onLoginSuccess()
-                            LoginManager.instance.saveUser(user!!)
+                            view.onLoginSuccess(user)
+//                            LoginManager.instance.saveUser(user!!)
                         } else {
                             Logger.d("onError: user is null")
                         }

@@ -5,8 +5,6 @@ import com.liuguangqiang.irunning.data.service.TokenService
 import com.liuguangqiang.irunning.extension.observeOnMainThread
 import com.liuguangqiang.kotlindemo.domian.RetrofitClient
 import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 /**

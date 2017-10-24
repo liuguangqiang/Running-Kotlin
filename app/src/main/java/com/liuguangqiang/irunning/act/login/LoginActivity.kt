@@ -8,6 +8,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.liuguangqiang.irunning.R
 import com.liuguangqiang.irunning.act.main.MainActivity
+import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.extension.toast
 import com.liuguangqiang.irunning.utils.LoginManager
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         DaggerLoginComponent.builder().loginModule(LoginModule(this)).build().inject(this)
 
         if (LoginManager.instance.isLogin()) {
-            onLoginSuccess()
+            onLoginSuccess(LoginManager.instance.user!!)
         }
     }
 
@@ -37,7 +38,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         presenter.login(username, password)
     }
 
-    override fun onLoginSuccess() {
+    override fun onLoginSuccess(user: User) {
         hideLoading()
         startActivity(Intent(this, MainActivity::class.java))
         finish()

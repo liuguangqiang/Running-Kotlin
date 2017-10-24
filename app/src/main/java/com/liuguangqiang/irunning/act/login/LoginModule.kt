@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class LoginModule(private val view: LoginContract.View) {
+open class LoginModule(private val view: LoginContract.View) {
 
     @Provides fun provideView() = view
 
