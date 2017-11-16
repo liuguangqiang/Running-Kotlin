@@ -5,7 +5,6 @@ import butterknife.OnClick
 import com.liuguangqiang.irunning.R
 import com.liuguangqiang.irunning.app.BaseFragment
 import com.liuguangqiang.irunning.data.entity.Step
-import com.liuguangqiang.irunning.extension.toast
 import com.liuguangqiang.irunning.utils.event.StepEvent
 import kotlinx.android.synthetic.main.fragment_step.*
 import org.greenrobot.eventbus.EventBus
@@ -29,7 +28,7 @@ class StepFragment : BaseFragment(), StepContract.View {
         }
 
         DaggerStepComponent.builder().stepModule(StepModule(this)).build().inject(this)
-        presenter.getCurrentSteps()
+//        presenter.getCurrentSteps()
     }
 
     override fun getContentLayout(): Int {

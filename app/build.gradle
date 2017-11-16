@@ -23,11 +23,12 @@ def releaseTime() {
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    google()
 }
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.liuguangqiang.irunning"
@@ -56,14 +57,17 @@ android {
         }
     }
 
+    flavorDimensions "running"
+
     productFlavors {
         dev {
-//            applicationIdSuffix '.dev'
             buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
+            dimension "running"
         }
 
         production {
             buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
+            dimension "running"
         }
     }
 

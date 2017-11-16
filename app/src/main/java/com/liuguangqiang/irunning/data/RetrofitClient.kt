@@ -56,7 +56,7 @@ class RetrofitClient {
         override fun intercept(chain: Interceptor.Chain): Response {
             val builder = chain.request().newBuilder()
             builder.addHeader(HEADER_USER_AGENT, "Test")
-            builder.addHeader("token", LoginManager.instance.getToken())
+            builder.addHeader("Authorization", LoginManager.instance.getToken())
             val response = chain.proceed(builder.build())
             return response
         }

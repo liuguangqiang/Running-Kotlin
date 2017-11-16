@@ -3,6 +3,8 @@ package com.liuguangqiang.irunning.act.login
 import com.liuguangqiang.irunning.data.entity.User
 import com.liuguangqiang.irunning.data.service.TokenService
 import com.liuguangqiang.irunning.data.service.UserService
+import com.liuguangqiang.irunning.extension.httpStatusCode
+import com.liuguangqiang.irunning.utils.LoginManager
 import com.liuguangqiang.support.utils.Logger
 import rx.Observable
 import rx.Observer
@@ -45,7 +47,9 @@ class LoginPresenter : LoginContract.Presenter {
         tokenService.post(username, password)
                 .flatMap { token ->
                     try {
-//                        LoginManager.instance.saveToken(token.token)
+                        Logger.d("login token:" + token.token)
+                        Logger.d("login user_id:" + token.user_id)
+                        LoginManager.instance.saveToken(token.token)
                         userService.get(token.user_id)
                     } catch (e: Exception) {
                         Observable.error<User>(Throwable("error"))
@@ -54,6 +58,7 @@ class LoginPresenter : LoginContract.Presenter {
                 .subscribe(object : Observer<User> {
                     override fun onNext(user: User?) {
                         if (user != null) {
+                            Logger.d("login username:" + user.username)
                             view.onLoginSuccess(user)
 //                            LoginManager.instance.saveUser(user!!)
                         } else {
@@ -62,7 +67,8 @@ class LoginPresenter : LoginContract.Presenter {
                     }
 
                     override fun onError(p0: Throwable?) {
-                        Logger.d("onError:" + p0.toString())
+                        Logger.d("onError:" + p0!!.message)
+                        Logger.d("http status code:" + p0.httpStatusCode())
                         view.onLoginFailed(p0!!)
                     }
 
