@@ -1,6 +1,6 @@
 package com.liuguangqiang.irunning.act.login
 
-import com.liuguangqiang.irunning.presenter.LoginPresenterTest
+import com.liuguangqiang.irunning.login.LoginPresenterTest
 import dagger.Component
 
 /**

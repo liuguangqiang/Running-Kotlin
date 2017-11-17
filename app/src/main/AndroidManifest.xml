@@ -23,12 +23,13 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
     <activity android:name=".act.main.MainActivity" />
 
     <!-- Service -->
     <service android:name=".service.RunningService" />
 
-    <activity android:name=".act.steps.StepsActivity"></activity>
+    <activity android:name=".act.steps.StepsActivity" />
   </application>
 
 </manifest>

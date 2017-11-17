@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.Bind
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.liuguangqiang.irunning.R
 import com.liuguangqiang.irunning.adapter.StepsAdapter.ViewHolder
 import com.liuguangqiang.irunning.data.entity.Step
-
 import com.liuguangqiang.irunning.widget.recyclerview.BaseAdapter
-
-import butterknife.ButterKnife
 
 /**
  * Created by eric on 17/8/2017.
@@ -31,10 +29,10 @@ class StepsAdapter(context: Context, data: List<Step>) : BaseAdapter<Step, ViewH
     class ViewHolder(view: View)
         : RecyclerView.ViewHolder(view) {
 
-        @Bind(R.id.tvTitle)
+        @BindView(R.id.tvTitle)
         lateinit var tvTitle: TextView
 
-        @Bind(R.id.tvDate)
+        @BindView(R.id.tvDate)
         lateinit var tvDate: TextView
 
         init {

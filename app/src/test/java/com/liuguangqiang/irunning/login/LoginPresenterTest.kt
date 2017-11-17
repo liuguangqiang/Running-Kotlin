@@ -1,4 +1,4 @@
-package com.liuguangqiang.irunning.presenter
+package com.liuguangqiang.irunning.login
 
 import com.liuguangqiang.irunning.SyncAndroidSchedulersHook
 import com.liuguangqiang.irunning.SyncJavaSchedulersHook
@@ -39,10 +39,10 @@ class LoginPresenterTest {
         @JvmStatic
         fun setup() {
             swithToSync()
-//            tokenService = Mockito.mock(TokenService::class.java)
-//            userService = Mockito.mock(UserService::class.java)
+            tokenService = Mockito.mock(TokenService::class.java)
+            userService = Mockito.mock(UserService::class.java)
             view = Mockito.mock(LoginContract.View::class.java)
-//            presenter = LoginPresenter(view, tokenService, userService)
+            presenter = LoginPresenter(view, tokenService, userService)
         }
 
         fun swithToSync() {

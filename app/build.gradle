@@ -1,3 +1,10 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
+
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
@@ -6,19 +13,6 @@ buildscript {
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
     }
-}
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'realm-android'
-apply plugin: 'io.fabric'
-
-def ext = rootProject.ext
-
-def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 repositories {
@@ -130,13 +124,13 @@ dependencies {
     //util
     compile eventbus
     compile guangqiangUtils
-    compile butterknife
-
+    compile 'com.jakewharton:butterknife:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
     compile 'org.jetbrains.anko:anko-sdk15:0.9.1'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.crashlytics.sdk.android:crashlytics:2.6.8'
-    
+
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.10.19"
 }
