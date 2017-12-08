@@ -55,12 +55,12 @@ android {
 
     productFlavors {
         dev {
-            buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
+            buildConfigField 'String', 'API', '"http://api.running.maiziui.com:8080/"'
             dimension "running"
         }
 
         production {
-            buildConfigField 'String', 'API', '"http://api.running.maiziui.com/"'
+            buildConfigField 'String', 'API', '"http://api.running.maiziui.com:8080/"'
             dimension "running"
         }
     }
@@ -133,4 +133,6 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.10.19"
+    testCompile 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.2'
+    androidTestCompile 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.2'
 }
