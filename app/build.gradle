@@ -27,7 +27,7 @@ android {
     defaultConfig {
         applicationId "com.liuguangqiang.irunning"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 4
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
